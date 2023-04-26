@@ -1,16 +1,38 @@
 import './App.css';
-import Header from './components/Header';
 import Login from './components/Login';
-import Container from 'react-bootstrap/Container';
+import {
+  createBrowserRouter,
+  RouterProvider
+} from "react-router-dom"
+import About from './components/About';
+import Main from './components/Main';
+import Root from './components/Root';
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Root />,
+    children: [
+      {
+        path: '/',
+        element: <Main />
+      },
+      {
+        path: '/login',
+        element: <Login />
+      },
+      {
+        path: '/about',
+        element: <About />
+      },
+
+    ]
+  }
+])
 
 function App() {
   return (
-    <div className="App">
-      <Header />
-      <Container>
-        <Login />
-      </Container>
-    </div>
+    <RouterProvider router={router} />
   );
 }
 
